@@ -1,0 +1,69 @@
+import React, { useEffect, useState } from 'react';
+
+const API_BASE_URL = 'https://fakestoreapi.com/carts';
+
+const DeleteCart = () => {
+  const [carts, setCarts] = useState([]);
+
+  // Function to fetch data from the API
+  const fetchData = async (url) => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error;
+    }
+  };
+
+  // Function to fetch all carts
+  const getAllCarts = async () => {
+    const data = await fetchData(API_BASE_URL);
+    setCarts(data);
+  };
+
+  // DELETE: Delete a cart
+  const deleteCart = async (id) => {
+    const response = await fetch(`${API_BASE_URL}/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      console.log(`Cart with id ${id} deleted successfully`);
+      // Refresh the cart list after deletion
+      getAllCarts();
+    } else {
+      console.error(`Failed to delete cart with id ${id}`);
+    }
+  };
+
+  useEffect(() => {
+    // Fetch all carts when the component mounts
+    getAllCarts();
+  }, []);
+
+  return (
+    <div>
+      <h2>Cart List</h2>
+      {carts.map((cart) => (
+        <div key={cart.id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
+          <p>Cart ID: {cart.id}</p>
+          <p>User ID: {cart.userId}</p>
+          <p>Date: {cart.date}</p>
+          <p>Products:</p>
+          <ul>
+            {cart.products.map((product, index) => (
+              <li key={index}>
+                Product ID: {product.productId}, Quantity: {product.quantity}
+              </li>
+            ))}
+          </ul>
+          <button onClick={() => deleteCart(cart.id)}>Delete Cart</button>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default DeleteCart;
