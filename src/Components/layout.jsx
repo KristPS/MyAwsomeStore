@@ -16,7 +16,7 @@ export default function Layout() {
     
       <div className="layout-page">
         <header>
-          <NavBar />
+        
           <nav>
             <ul>
             <li>
