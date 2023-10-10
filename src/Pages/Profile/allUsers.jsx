@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE_URL = 'https://fakestoreapi.com/users';
+const BASE_URL = 'https://fakestoreapi.com/users';
 
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
@@ -22,7 +22,7 @@ const AllUsers = () => {
   const getAllUsers = async () => {
     try {
       setLoading(true);
-      const data = await fetchData(API_BASE_URL);
+      const data = await fetchData(BASE_URL);
       setUsers(data);
     } finally {
       setLoading(false);
