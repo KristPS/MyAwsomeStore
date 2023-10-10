@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const API_BASE_URL = 'https://fakestoreapi.com/carts';
+const BASE_URL = 'https://fakestoreapi.com/carts';
 
 const UpdateCart = () => {
   const [carts, setCarts] = useState([]);
@@ -25,20 +25,24 @@ const UpdateCart = () => {
 
   // PUT: Update a cart
   const updateCart = async (id, updatedCartData) => {
-    const response = await fetch(`${API_BASE_URL}/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedCartData),
-    });
+    try {
+      const response = await fetch(`${BASE_URL}/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedCartData),
+      });
 
-    if (response.ok) {
-      console.log(`Cart with id ${id} updated successfully`);
-      // Refresh the cart list after updating
-      getAllCarts();
-    } else {
-      console.error(`Failed to update cart with id ${id}`);
+      if (response.ok) {
+        console.log(`Cart with id ${id} updated successfully`);
+        // Refresh the cart list after updating
+        getAllCarts();
+      } else {
+        console.error(`Failed to update cart with id ${id}`);
+      }
+    } catch (error) {
+      console.error('Error updating cart:', error);
     }
   };
 
@@ -51,7 +55,7 @@ const UpdateCart = () => {
     <div>
       <h2>Cart List</h2>
       {carts.map((cart) => (
-        <div key={cart.id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
+        <div key={cart.id}>
           <p>Cart ID: {cart.id}</p>
           <p>User ID: {cart.userId}</p>
           <p>Date: {cart.date}</p>
