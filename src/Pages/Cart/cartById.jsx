@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const API_BASE_URL = 'https://fakestoreapi.com/carts';
+const BASE_URL = 'https://fakestoreapi.com/carts';
 
 const CartById = () => {
   const [cart, setCart] = useState(null);
@@ -20,7 +20,7 @@ const CartById = () => {
   // Fetch a specific cart based on id
   const getCartById = async (id) => {
     try {
-      const data = await fetchData(`${API_BASE_URL}/${id}`);
+      const data = await fetchData(`${BASE_URL}/${id}`);
       setCart(data); // Update the state with the fetched data
     } catch (error) {
       console.error('Error getting cart by ID:', error);
