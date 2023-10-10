@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const API_BASE_URL = 'https://fakestoreapi.com/carts';
+const BASE_URL = 'https://fakestoreapi.com/carts';
 
 const CreateNewCart = () => {
   const [createdCart, setCreatedCart] = useState(null);
@@ -20,7 +20,7 @@ const CreateNewCart = () => {
   // POST: Create a new cart
   const createNewCart = async (newCartData) => {
     try {
-      const response = await fetch(API_BASE_URL, {
+      const response = await fetch(BASE_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
