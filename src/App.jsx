@@ -9,10 +9,16 @@ import Logout from "./Pages/logout.jsx";
 import NavBar from "./Components/layout.jsx";
 
 
+function Home()  {
+  return (
+<div>
+        <h1>Welcome to the Home Page</h1>
+      </div>
+  )
+}
 
-function Home() {
+function App() {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
-
   return (
     <div className="home">
       <div>Welcome to the Home Page</div>
