@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const API_BASE_URL = 'https://fakestoreapi.com/carts';
+const BASE_URL = 'https://fakestoreapi.com/carts';
 
 const GetAllCarts = () => {
   const [carts, setCarts] = useState([]);
@@ -26,7 +26,7 @@ const GetAllCarts = () => {
   // Function to delete a cart
   const deleteCart = async (cartId) => {
     try {
-      await fetch(`${API_BASE_URL}/${cartId}`, {
+      await fetch(`${BASE_URL}/${cartId}`, {
         method: 'DELETE',
       });
 
