@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE_URL = 'https://fakestoreapi.com/users';
+const BASE_URL = 'https://fakestoreapi.com/users';
 
 const DeleteUser = () => {
   const [users, setUsers] = useState([]);
@@ -19,7 +19,7 @@ const DeleteUser = () => {
 
   // DELETE: Delete a user
   const deleteUser = async (id) => {
-    const response = await fetch(`${API_BASE_URL}/${id}`, {
+    const response = await fetch(`${BASE_URL}/${id}`, {
       method: 'DELETE',
     });
 
