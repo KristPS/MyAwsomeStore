@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE_URL = 'https://fakestoreapi.com/products';
+
+const BASE_URL = 'https://fakestoreapi.com/products';
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -20,7 +21,7 @@ const AllProducts = () => {
 
   // Fetch all products
   const getAllProducts = async () => {
-    const data = await fetchData(API_BASE_URL);
+    const data = await fetchData(BASE_URL);
     setProducts(data);
 
     // Extract unique categories from products
@@ -29,15 +30,14 @@ const AllProducts = () => {
   };
 
   useEffect(() => {
-    // Example usage of functions
-    getAllProducts();
+  getAllProducts();
   }, []);
 
   return (
-    <div className="products-page">
-      <h2>Product List</h2>
+    <>
+      <h2>Products List</h2>
       {products.map((product) => (
-        <div key={product.id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
+        <div key={product.id}>
           <p>Product ID: {product.id}</p>
           <p>Title: {product.title}</p>
           <p>Price: ${product.price.toFixed(2)}</p>
@@ -52,7 +52,7 @@ const AllProducts = () => {
           <li key={category}>{category}</li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 
