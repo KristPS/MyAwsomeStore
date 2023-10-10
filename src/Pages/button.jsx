@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../App.css";
+
 
 function Button({ onClick, content, shape, size, color, animation, token, setToken }) {
   const handleClick = () => {
