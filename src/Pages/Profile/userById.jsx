@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE_URL = 'https://fakestoreapi.com/users';
+const BASE_URL = 'https://fakestoreapi.com/users';
 
 const UserById = () => {
   const [user, setUser] = useState(null);
@@ -19,7 +19,7 @@ const UserById = () => {
 
   // Fetch a specific user based on id
   const getUserById = async (id) => {
-    const data = await fetchData(`${API_BASE_URL}/${id}`);
+    const data = await fetchData(`${BASE_URL}/${id}`);
     setUser(data);
   };
 
