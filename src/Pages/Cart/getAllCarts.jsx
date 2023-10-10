@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-
 const API_BASE_URL = 'https://fakestoreapi.com/carts';
 
 const GetAllCarts = () => {
@@ -18,22 +17,36 @@ const GetAllCarts = () => {
     }
   };
 
-  // Fetch all carts
+  // Function to fetch all carts
   const getAllCarts = async () => {
     const data = await fetchData(API_BASE_URL);
     setCarts(data);
   };
 
+  // Function to delete a cart
+  const deleteCart = async (cartId) => {
+    try {
+      await fetch(`${API_BASE_URL}/${cartId}`, {
+        method: 'DELETE',
+      });
+
+      // After deleting, fetch the updated cart list
+      getAllCarts();
+    } catch (error) {
+      console.error('Error deleting cart:', error);
+    }
+  };
+
   useEffect(() => {
-    // Example usage of functions
+    // Fetch all carts when the component mounts
     getAllCarts();
-  }, []); // Don't forget the dependency array
+  }, []);
 
   return (
     <div className="cart-page">
       <h2>Cart List</h2>
       {carts.map((cart) => (
-        <div key={cart.id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
+        <div key={cart.id}>
           <p>Cart ID: {cart.id}</p>
           <p>User ID: {cart.userId}</p>
           <p>Date: {cart.date}</p>
