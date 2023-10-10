@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const API_BASE_URL = 'https://fakestoreapi.com/carts';
 
 const CartById = () => {
-  const [carts, setCarts] = useState([]);
+  const [cart, setCart] = useState(null);
 
   // Function to fetch data from the API
   const fetchData = async (url) => {
@@ -19,20 +19,23 @@ const CartById = () => {
 
   // Fetch a specific cart based on id
   const getCartById = async (id) => {
-    const data = await fetchData(`${API_BASE_URL}/${id}`);
-    setCarts([data]); // Update the state with the fetched data
+    try {
+      const data = await fetchData(`${API_BASE_URL}/${id}`);
+      setCart(data); // Update the state with the fetched data
+    } catch (error) {
+      console.error('Error getting cart by ID:', error);
+    }
   };
 
   useEffect(() => {
-    // Example usage of functions
-    getCartById(1);
+   getCartById(1);
   }, []);
 
   return (
     <div>
-      <h2>Cart List</h2>
-      {carts.map((cart) => (
-        <div key={cart.id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
+      <h2>Cart Details</h2>
+      {cart && (
+        <div>
           <p>Cart ID: {cart.id}</p>
           <p>User ID: {cart.userId}</p>
           <p>Date: {cart.date}</p>
@@ -45,7 +48,7 @@ const CartById = () => {
             ))}
           </ul>
         </div>
-      ))}
+      )}
     </div>
   );
 };
