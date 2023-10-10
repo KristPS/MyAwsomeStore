@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const API_BASE_URL = 'https://fakestoreapi.com/auth/signup';
+const BASE_URL = 'https://fakestoreapi.com/auth/signup';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -9,7 +9,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await fetch(API_BASE_URL, {
+      const response = await fetch(BASE_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
