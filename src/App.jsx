@@ -10,11 +10,12 @@ import NavBar from "./Components/layout.jsx";
 
 
 
-function App() {
+function Home() {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
 
   return (
     <div className="app">
+      <div>Welcome to the Home Page</div>
       <NavBar token={token} setToken={setToken} />
       <Routes>
         <Route path="/" element={<Home />} />
