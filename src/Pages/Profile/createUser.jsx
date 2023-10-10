@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE_URL = 'https://fakestoreapi.com/users';
+const BASE_URL = 'https://fakestoreapi.com/users';
 
 const CreateUser = () => {
   const [users, setUsers] = useState([]);
@@ -19,7 +19,7 @@ const CreateUser = () => {
 
   // POST: Create a new user
   const createUser = async (newUserData) => {
-    const response = await fetch(API_BASE_URL, {
+    const response = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
