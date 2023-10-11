@@ -5,7 +5,6 @@ const BASE_URL = 'https://fakestoreapi.com/users';
 const CreateUser = () => {
   const [users, setUsers] = useState([]);
 
-  // Function to fetch data from the API
   const fetchData = async (url) => {
     try {
       const response = await fetch(url);
@@ -17,8 +16,8 @@ const CreateUser = () => {
     }
   };
 
-  // POST: Create a new user
   const createUser = async (newUserData) => {
+    try {
     const response = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
@@ -27,11 +26,18 @@ const CreateUser = () => {
       body: JSON.stringify(newUserData),
     });
 
+    if (!response.ok) {
+      console.error("Failed to create a new user", response.status, response.statusText);
+      return;
+    }
+
     const createdUser = await response.json();
     console.log(createdUser);
 
-    // Update the users state if needed
     setUsers([...users, createdUser]);
+  } catch (error) {
+    console.error('Error creating a new user', error);
+  }
   };
 
   useEffect(() => {
@@ -55,15 +61,14 @@ const CreateUser = () => {
       },
       phone: '123-456-7890',
     });
-
-    // Note: You generally don't want to include JSX here
-  }, []); // Empty dependency array for a one-time effect
+    
+  }, []); 
 
   return (
-    <div className="users">
+    <div>
       <h2>User List</h2>
       {users.map((user) => (
-        <div key={user.id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
+        <div key={user.id}>
           <p>User ID: {user.id}</p>
           <p>Email: {user.email}</p>
           <p>Username: {user.username}</p>

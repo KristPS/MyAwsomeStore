@@ -5,7 +5,6 @@ const BASE_URL = 'https://fakestoreapi.com/users';
 const UpdateUser = () => {
   const [users, setUsers] = useState([]);
 
-  // Function to fetch data from the API
   const fetchData = async (url) => {
     try {
       const response = await fetch(url);
@@ -17,27 +16,29 @@ const UpdateUser = () => {
     }
   };
 
-  // PUT: Update a user
-  const updateUser = async (id, updatedUserData) => {
-    const response = await fetch(`${BASE_URL}/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedUserData),
-    });
-
-    if (response.ok) {
-      // Fetch updated user data after successful update
-      const updatedData = await fetchData(API_BASE_URL);
-      setUsers(updatedData);
-    } else {
-      console.error(`Failed to update user with id ${id}`);
+   const updateUser = async (id, updatedUserData) => {
+    try {
+      const response = await fetch(`${BASE_URL}/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedUserData),
+      });
+  
+      if (response.ok) {
+        const updatedData = await fetchData(BASE_URL);
+        setUsers(updatedData);
+      } else {
+        console.error(`Failed to update user with id ${id}:`, response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('Error updating user:', error);
     }
   };
 
   useEffect(() => {
-    // Example usage of functions
+    
     updateUser(1, {
       email: 'updated@example.com',
       username: 'updateduser',
@@ -61,10 +62,10 @@ const UpdateUser = () => {
   }, []);
 
   return (
-    <div className="users">
+    <div>
       <h2>User List</h2>
       {users.map((user) => (
-        <div key={user.id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
+        <div key={user.id}>
           <p>User ID: {user.id}</p>
           <p>Email: {user.email}</p>
           <p>Username: {user.username}</p>

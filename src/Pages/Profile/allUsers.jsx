@@ -6,19 +6,17 @@ const AllUsers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Function to fetch data from the API
   const fetchData = async (url) => {
     try {
       const response = await fetch(url);
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching user:', error);
       throw error;
     }
   };
 
-  // Fetch all users
   const getAllUsers = async () => {
     try {
       setLoading(true);
@@ -31,15 +29,14 @@ const AllUsers = () => {
 
   useEffect(() => {
     getAllUsers();
-  }, []); // Empty dependency array for initial fetch
-
+  }, []); 
   return (
-    <div className="users-page">
+    <div>
       <h2>User List</h2>
       {loading && <p>Loading...</p>}
       {!loading &&
         users.map((user) => (
-          <div key={user.id} style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
+          <div key={user.id}>
             <p>User ID: {user.id}</p>
             <p>Email: {user.email}</p>
             <p>Username: {user.username}</p>

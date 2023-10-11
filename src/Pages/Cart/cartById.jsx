@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react';
 const BASE_URL = 'https://fakestoreapi.com/carts';
 
 const CartById = () => {
-  const [cart, setCart] = useState(null);
+  const [cart, setCart] = useState({});
 
-  // Function to fetch data from the API
   const fetchData = async (url) => {
     try {
       const response = await fetch(url);
@@ -17,13 +16,12 @@ const CartById = () => {
     }
   };
 
-  // Fetch a specific cart based on id
-  const getCartById = async (id) => {
+   const getCartById = async (id) => {
     try {
       const data = await fetchData(`${BASE_URL}/${id}`);
-      setCart(data); // Update the state with the fetched data
+      setCart(data); 
     } catch (error) {
-      console.error('Error getting cart by ID:', error);
+      console.error('Error getting an item:', error);
     }
   };
 
@@ -38,7 +36,8 @@ const CartById = () => {
         <div>
           <p>Cart ID: {cart.id}</p>
           <p>User ID: {cart.userId}</p>
-          <p>Date: {cart.date}</p>
+          <p>Date: {new Date(cart.date).toLocaleDateString()}</p>
+
           <p>Products:</p>
           <ul>
             {cart.products.map((product, index) => (

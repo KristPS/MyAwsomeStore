@@ -20,6 +20,9 @@ const Signup = () => {
       if (response.ok) {
         const data = await response.json();
         console.log('Signup successful:', data);
+
+        const userDetailData = await fetchUserDetail(data.userId);
+        console.log('User Details:', userDetailData);
         
       } else {
         const errorData = await response.json();
@@ -32,28 +35,33 @@ const Signup = () => {
     }
   };
 
-  
   const fetchUserDetail = async (userId) => {
-    const userDetailResponse = await fetch(`https://fakestoreapi.com/users/${userId}`);
-    const userDetailData = await userDetailResponse.json();
-    return userDetailData;
+    try {
+      const userDetailResponse = await fetch(`BASE_URL/${userId}`);
+      const userDetailData = await userDetailResponse.json();
+      return userDetailData;
+    } catch (error) {
+      console.error('Error fetching user details:', error);
+      setErrorMessage('An error occurred while fetching user details.');
+      return null;
+    }
   };
 
   return (
-    <div className="signup-page">
+    <div>
       <h2>Signup</h2>
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         <label>
           Username:
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
         </label>
         <br />
         <label>
           Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </label>
         <br />
-        <button type="button" onClick={handleSignup}>
+        <button type="submit" onClick={handleSignup}>
           Signup
         </button>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}

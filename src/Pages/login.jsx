@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
-import "../App.css";
+
+const BASE_URL = 'https://fakestoreapi.com/auth/login';
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -8,30 +9,27 @@ export default function Login() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate(); 
+  const [token, setToken] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Reset any previous error
     setError(null);
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/api/login", {
-        method: "POST",
+      const response = await fetch(BASE_URL, {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
+        body: JSON.stringify({ username, password }),
       });
-
+          
       if (response.ok) {
         const data = await response.json();
-        const token = data.token;
-        localStorage.setItem("token", token);
+        setToken(data.token);
+        localStorage.setItem("token", data.token);
         navigate("/cart");
         console.log("Login successful");
       } else {
@@ -48,7 +46,7 @@ export default function Login() {
   };
 
   return (
-    <div className="login-page">
+    <div>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <label>

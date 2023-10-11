@@ -10,8 +10,8 @@ const fetchData = async (url) => {
     }
     return await response.json();
   } catch (error) {
-    console.error('Error fetching data:', error.message);
-    throw error;
+    console.error('Error fetching data:', error);
+    setError(error);
   }
 };
 
@@ -56,9 +56,9 @@ const AllProductCategories = () => {
   }
 
   return (
-    <div className="allCategories">
+    <div>
       <h2>Categories List</h2>
-      <ProductList products={products} />
+      <ProductList products={products} key={product.id} />
       <ul>
         {categories.map((category) => (
           <li key={category}>{category}</li>
@@ -70,16 +70,3 @@ const AllProductCategories = () => {
 
 export default AllProductCategories;
 
-  return (
-    <div className="allCategories">
-      <h2>Categories List</h2>
-      <ul>
-        {categories.map((category) => (
-          <li key={category}>{category}</li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default AllProductCategories;

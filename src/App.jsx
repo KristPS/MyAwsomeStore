@@ -1,45 +1,46 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Cart from "./Pages/Cart/getAllCarts.jsx";
-import Products from "./Pages/Products/allProducts.jsx";
-import Login from "./Pages/login.jsx";
-import Logout from "./Pages/logout.jsx";
+import Cart from "./Pages/Cart/getAllCarts";
+import Products from "./Pages/Products/allProducts";
+import Login from "./Pages/login";
+import Logout from "./Pages/logout";
+import Home from "./Pages/home";
 
 function App() {
-  
+  const [token, setToken] = useState("");
+
   return (
-   <Router>
-    <div> 
-      <nav>
-        <ul> 
-          <li>
-        <Link to="/">Home</Link>
+    
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/allProducts">Products</Link>
+              <Link to="/products">Products</Link>
             </li>
             <li>
-              <Link to="/getAllCarts">Cart</Link>
+              <Link to="/carts">Cart</Link>
             </li>
             <li>
               <Link to="/login">Login</Link>
             </li>
             <li>
               <Link to="/logout">Logout</Link>
-              </li>
-        </ul>
-      </nav>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/carts" element={<Cart />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/login" element={<Login setToken={setToken} />} />
+        </Routes>
+      </div>
     
-         <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/allProducts" element={<Products />} />
-        <Route path="/getAllCarts" element={<Cart />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/login" element={<Login setToken={setToken} />} />
-               
-      </Routes>
-    </div>
-    </Router>
   );
 }
 

@@ -7,24 +7,24 @@ const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
-  // Function to fetch data from the API
+ 
   const fetchData = async (url) => {
     try {
       const response = await fetch(url);
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching product:', error);
       throw error;
     }
   };
 
-  // Fetch all products
+  
   const getAllProducts = async () => {
-    const data = await fetchData(BASE_URL);
-    setProducts(data);
+    const productsData = await fetchData(BASE_URL);
+    setProducts(productsData);
 
-    // Extract unique categories from products
+    
     const uniqueCategories = [...new Set(data.map(product => product.category))];
     setCategories(uniqueCategories);
   };
@@ -43,7 +43,7 @@ const AllProducts = () => {
           <p>Price: ${product.price.toFixed(2)}</p>
           <p>Category: {product.category}</p>
           <p>Description: {product.description}</p>
-          <p>Image: <img src={product.image} alt={product.title} style={{ maxWidth: '100px' }} /></p>
+          <p>Image: <img src={product.image} alt={product.title} style={{ maxWidth: '100%' }} /></p>
         </div>
       ))}
       <h2>Categories</h2>

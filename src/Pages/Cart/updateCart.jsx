@@ -5,7 +5,6 @@ const BASE_URL = 'https://fakestoreapi.com/carts';
 const UpdateCart = () => {
   const [carts, setCarts] = useState([]);
 
-  // Function to fetch data from the API
   const fetchData = async (url) => {
     try {
       const response = await fetch(url);
@@ -16,14 +15,12 @@ const UpdateCart = () => {
       throw error;
     }
   };
-
-  // Function to fetch all carts
+  
   const getAllCarts = async () => {
-    const data = await fetchData(API_BASE_URL);
+    const data = await fetchData(BASE_URL);
     setCarts(data);
   };
 
-  // PUT: Update a cart
   const updateCart = async (id, updatedCartData) => {
     try {
       const response = await fetch(`${BASE_URL}/${id}`, {
@@ -36,7 +33,7 @@ const UpdateCart = () => {
 
       if (response.ok) {
         console.log(`Cart with id ${id} updated successfully`);
-        // Refresh the cart list after updating
+       
         getAllCarts();
       } else {
         console.error(`Failed to update cart with id ${id}`);
@@ -47,7 +44,7 @@ const UpdateCart = () => {
   };
 
   useEffect(() => {
-    // Fetch all carts when the component mounts
+    
     getAllCarts();
   }, []);
 

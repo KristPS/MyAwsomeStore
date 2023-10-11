@@ -5,7 +5,6 @@ const BASE_URL = 'https://fakestoreapi.com/users';
 const UserById = () => {
   const [user, setUser] = useState(null);
 
-  // Function to fetch data from the API
   const fetchData = async (url) => {
     try {
       const response = await fetch(url);
@@ -16,8 +15,6 @@ const UserById = () => {
       throw error;
     }
   };
-
-  // Fetch a specific user based on id
   const getUserById = async (id) => {
     const data = await fetchData(`${BASE_URL}/${id}`);
     setUser(data);
@@ -28,10 +25,10 @@ const UserById = () => {
   }, []);
 
   return (
-    <div className="users">
+    <div>
       <h2>User Details</h2>
       {user && (
-        <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
+        <div>
           <p>User ID: {user.id}</p>
           <p>Email: {user.email}</p>
           <p>Username: {user.username}</p>

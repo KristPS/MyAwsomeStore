@@ -1,29 +1,25 @@
-import React, { useState, useEffect } from "react";
-//import Logout from './Logout';
+import React, { useEffect } from "react";
 import Signup from "../Pages/signup";
+import { useNavigate } from "react-router-dom";
 
-const AuthExample = () => {
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
+const Logout = ({ setToken }) => {
+  const navigate = useNavigate();
 
-  const Logout = ({ setToken }) => {
-    useEffect(() => {
+  useEffect(() => {
+    const performLogout = async () => {
       localStorage.removeItem("token");
       setToken("");
-    }, [setToken]);
-  };
+      navigate("/");
+    };
+
+    performLogout();
+  }, [setToken, navigate]);
 
   return (
-    <div className="logout-page">
-      {token ? (
-        <div>
-          {/* Render authenticated content here */}
-          <Logout setToken={setToken} />
-        </div>
-      ) : (
-        <Signup setToken={setToken} />
-      )}
+    <div>
+      <p>Logging out...</p>
     </div>
   );
 };
 
-export default AuthExample;
+export default Logout;

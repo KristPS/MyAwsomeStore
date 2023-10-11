@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react';
 const BASE_URL = 'https://fakestoreapi.com/carts';
 
 const CreateNewCart = () => {
-  const [createdCart, setCreatedCart] = useState(null);
+  const [createdCart, setCreatedCart] = useState({});
 
-  // Function to fetch data from the API
   const fetchData = async (url) => {
     try {
       const response = await fetch(url);
@@ -17,7 +16,7 @@ const CreateNewCart = () => {
     }
   };
 
-  // POST: Create a new cart
+
   const createNewCart = async (newCartData) => {
     try {
       const response = await fetch(BASE_URL, {
@@ -50,7 +49,8 @@ const CreateNewCart = () => {
         <div>
           <p>Cart ID: {createdCart.id}</p>
           <p>User ID: {createdCart.userId}</p>
-          <p>Date: {createdCart.date}</p>
+          <p>Date: {new Date(createdCart.date).toLocaleDateString()}</p>
+
           <p>Products:</p>
           <ul>
             {createdCart.products.map((product, index) => (

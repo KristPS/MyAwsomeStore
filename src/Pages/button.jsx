@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 function Button({ onClick, content, shape, size, color, animation, token, setToken }) {
   const handleClick = () => {
     onClick(content, token, setToken, shape, size, color, animation);
-    // Handle the click event here
     setToken("");
   };
 
