@@ -18,12 +18,11 @@ const GetAllCarts = () => {
 
   const getAllCarts = async () => {
     try {
-    const data = await fetchData(BASE_URL);
-    setCarts(data);
-  } catch (error) {
-    console.error('Error fetching all carts', error);
-  }
-    
+      const data = await fetchData(BASE_URL);
+      setCarts(data);
+    } catch (error) {
+      console.error('Error fetching all carts', error);
+    }
   };
 
   const deleteCart = async (cartId) => {
@@ -32,7 +31,7 @@ const GetAllCarts = () => {
         method: 'DELETE',
       });
 
-    getAllCarts();
+      getAllCarts();
     } catch (error) {
       console.error('Error deleting cart:', error);
     }
@@ -41,6 +40,32 @@ const GetAllCarts = () => {
   useEffect(() => {
     getAllCarts();
   }, []);
+
+  const proceedToCheckout = async (cartId) => {
+    try {
+      await fetch(`${BASE_URL}/${cartId}/checkout`, {
+        method: 'POST',
+      });
+
+      getAllCarts();
+      console.log('Proceeding to checkout...');
+    } catch (error) {
+      console.error('Error initiating checkout:', error);
+    }
+  };
+
+  const addToCart = async (cartId) => {
+    try {
+      await fetch(`${BASE_URL}/${cartId}/add-to-cart`, {
+        method: 'POST',
+      });
+
+      getAllCarts();
+      console.log('Adding to cart...');
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+    }
+  };
 
   return (
     <div>
@@ -60,6 +85,8 @@ const GetAllCarts = () => {
             ))}
           </ul>
           <button onClick={() => deleteCart(cart.id)}>Delete Cart</button>
+          <button onClick={() => proceedToCheckout(cart.id)}>Checkout</button>
+          <button onClick={() => addToCart(cart.id)}>Add to Cart</button>
         </div>
       ))}
     </div>
