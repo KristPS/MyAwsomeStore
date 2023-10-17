@@ -18,6 +18,7 @@ const AllProducts = () => {
     }
   };
 
+
   const getAllProducts = async () => {
     const productsData = await fetchData(BASE_URL);
     setProducts(productsData);
@@ -44,9 +45,35 @@ const AllProducts = () => {
 
   useEffect(() => {
     getAllProducts();
+    getAllProducts();
   }, []);
 
   return (
+    <>
+      <h2>Products List</h2>
+      {products.map((product) => (
+        <div key={product.id}>
+          <p>Product ID: {product.id}</p>
+          <p>Title: {product.title}</p>
+          <p>Price: ${product.price.toFixed(2)}</p>
+          <p>Category: {product.category}</p>
+          <p>Description: {product.description}</p>
+          <p>Image: <img src={product.image} alt={product.title} style={{ maxWidth: '25%' }} /></p>
+          <button onClick={() => addToCart(product.id)}>Add to Cart</button>
+        </div>
+      ))}
+      <h2>Categories</h2>
+      <ul>
+        {categories.map((category) => (
+          <li key={category}>{category}</li>
+        ))}
+      </ul>
+    </>
+  );
+};
+
+export default AllProducts;
+
     <>
       <h2>Products List</h2>
       {products.map((product) => (
