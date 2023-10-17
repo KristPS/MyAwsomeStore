@@ -71,27 +71,3 @@ const AllProducts = () => {
 };
 
 export default AllProducts;
-
-    <>
-      <h2>Products List</h2>
-      {products.map((product) => (
-        <div key={product.id}>
-          <p>Product ID: {product.id}</p>
-          <p>Title: {product.title}</p>
-          <p>Price: ${product.price.toFixed(2)}</p>
-          <p>Category: {product.category}</p>
-          <p>Description: {product.description}</p>
-          <p>Image: <img src={product.image} alt={product.title} style={{ maxWidth: '100%' }} /></p>
-        </div>
-      ))}
-      <h2>Categories</h2>
-      <ul>
-        {categories.map((category) => (
-          <li key={category}>{category}</li>
-        ))}
-      </ul>
-    </>
-  );
-};
-
-export default AllProducts;
