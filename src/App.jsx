@@ -5,6 +5,7 @@ import Products from "./Pages/Products/allProducts";
 import Login from "./Pages/login";
 import Logout from "./Pages/logout";
 import Home from "./Pages/home";
+import Checkout from "./Pages/checkout";
 
 function App() {
   const [token, setToken] = useState("");
@@ -36,6 +37,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/carts" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/login" element={<Login setToken={setToken} />} />
         </Routes>

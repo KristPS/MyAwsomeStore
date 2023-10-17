@@ -9,7 +9,7 @@ function Button({ onClick, content, shape, size, color, animation, token, setTok
   };
 
   return (
-    <div className="button">
+    <div>
       <button onClick={handleClick}>{content}</button>
     </div>
   );
