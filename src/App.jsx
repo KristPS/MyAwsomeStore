@@ -8,8 +8,10 @@ import Home from "./Pages/home";
 import Checkout from "./Pages/checkout";
 
 function App() {
+  // This is the entry point of your app - anything that you want to use across different components (like token, user, cart)
+  // can be fetched here and set in state 
   const [token, setToken] = useState("");
-
+  // users, setUsers 
   return (
     
       <div>
@@ -36,9 +38,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
+          {/* Once a user has logged in, you can pass that user's info into the cart component to get user's cart.  */}
           <Route path="/carts" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          {/* You will also want to pass in setUser to your Logout component - when you log out, you can set user to null to clear all user info */}
           <Route path="/logout" element={<Logout />} />
+          {/* once you fetch all users, you can pass them into the Login component (example: users={users} setUser={setUser}) */}
           <Route path="/login" element={<Login setToken={setToken} />} />
         </Routes>
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Signup from "../Pages/signup";
 import { useNavigate } from "react-router-dom";
-
+// once you have user stored, you want to clear the user in the same way that you are clearing the token. 
 const Logout = ({ setToken }) => {
   const navigate = useNavigate();
 
