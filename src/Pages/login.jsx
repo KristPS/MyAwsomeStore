@@ -49,6 +49,7 @@ export default function Login() {
         // once you have an OK response, you can set user here. 
         // since setUser is passed into this component and exists in App.jsx, once you set it here it will be accessible to other components that share this state. 
         localStorage.setItem("token", data.token);
+        // before you navigate to cart - set the user so that you can use it to request that user's cart .
         navigate("/cart");
         console.log("Login successful");
       } else {

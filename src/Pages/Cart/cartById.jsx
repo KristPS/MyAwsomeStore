@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 const BASE_URL = 'https://fakestoreapi.com/carts';
-
+// pass in props = CartById = ({ cart, user, token, setCart ... whatever })
 const CartById = () => {
+  // this should be in App.jsx - you want to set state there so you can pass to other components. 
   const [cart, setCart] = useState({});
 
   const fetchData = async (url) => {
@@ -26,6 +27,7 @@ const CartById = () => {
   };
 
   useEffect(() => {
+    // here 
    getCartById(1);
   }, []);
 

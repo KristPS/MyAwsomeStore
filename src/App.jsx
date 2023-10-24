@@ -10,8 +10,8 @@ import Checkout from "./Pages/checkout";
 function App() {
   // This is the entry point of your app - anything that you want to use across different components (like token, user, cart)
   // can be fetched here and set in state 
+  // if you are storing the token in localStorage, you should check here to see if a token is stored. if so, you can load user data
   const [token, setToken] = useState("");
-  // users, setUsers 
   return (
     
       <div>
