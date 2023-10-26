@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigation instead of useHistory
+import { useNavigate } from 'react-router-dom'; 
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Use useNavigation hook
+  const navigate = useNavigate(); 
 
   const handleLogin = () => {
     if (username && password) {
       localStorage.setItem('user', JSON.stringify({ username, password }));
-      navigate('/'); // Use navigate instead of history.push
+      navigate('/'); 
     } else {
       alert('Please enter valid credentials!');
     }
