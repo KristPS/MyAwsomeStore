@@ -1,8 +1,11 @@
 //cart.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import {Link} from 'react-router-dom';
+import {CartContext} from '../../cartContext'
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
+  //const (cartItems) = useContext(CartContext);
 
   const fetchCartData = () => {
     const storedCart = localStorage.getItem("cart");
@@ -41,7 +44,7 @@ function Cart() {
           </li>
         ))}
       </ul>
-      <button>Proceed to Checkout</button>
+      <Link to = "/checkout">Proceed to Checkout</Link>
     </div>
   );
 }

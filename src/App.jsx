@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 
 import ProductList from "./Pages/Files/productList";
-import ProductDetail from "./Pages/Files/productDetails";
+import ProductDetail from "./Pages/Files/ProductDetail";
 import Cart from "./Pages/Files/cart";
 import Checkout from "./Pages/Files/checkout";
 
@@ -28,6 +28,9 @@ function App() {
             </li>
             <li>
               <Link to="/logout">Logout</Link>
+            </li>
+            <li>
+              <Link to="/checkout">Checkout</Link>
             </li>
           </ul>
         </nav>

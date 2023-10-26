@@ -1,197 +1,197 @@
-//productDetails
-import React, { useContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
+// //productDetails
+// import React, { useContext, useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
+// import styled from "styled-components";
 
-import { CartContext } from "../cartContext";
-import { fetcher } from "./fetcher";
+// import { CartContext } from "../../cartContext";
+// import { fetcher } from "../../fetcher";
 
-export const getProductById = async (id) => {
-  return fetcher(`/products/${id}`);
-};
+// export const getProductById = async (id) => {
+//   return fetcher(`/products/${id}`);
+// };
 
-const ProductDetail = () => {
-  const { addToCart } = useContext(CartContext);
-  const [productData, setProductData] = useState({
-    errorMessage: "",
-    data: {},
-  });
-  const { productId } = useParams();
+// const ProductDetail = () => {
+//   const { addToCart } = useContext(CartContext);
+//   const [productData, setProductData] = useState({
+//     errorMessage: "",
+//     data: {},
+//   });
+//   const { productId } = useParams();
 
-  const handleAddToCart = () => {
-    addToCart(productData); // Assuming addToCart expects a product object
-  }
+//   const handleAddToCart = () => {
+//     addToCart(productData); // Assuming addToCart expects a product object
+//   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const responseObject = await getProductById(productId);
-        setProductData(responseObject);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      }
-    };
-    fetchData();
-  }, [productId]);
-  const createMarkup = () => {
-    return { __html: product.data?.description };
-  };
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const responseObject = await getProductById(productId);
+//         setProductData(responseObject);
+//       } catch (error) {
+//         console.error("Error fetching product:", error);
+//       }
+//     };
+//     fetchData();
+//   }, [productId]);
+//   const createMarkup = () => {
+//     return { __html: product.data?.description };
+//   };
 
-  return (
-    <ProductInfoArticle>
-      <ProductTitle>{product.data.title} </ProductTitle>
+//   return (
+//     <ProductInfoArticle>
+//       <ProductTitle>{product.data.title} </ProductTitle>
 
-      <figure>
-        <ProductImageContainer>
-          <ProductImage
-            src={`/assets/${product.data.image}`}
-            alt={product.data.title}
-          />
-        </ProductImageContainer>
-      </figure>
+//       <figure>
+//         <ProductImageContainer>
+//           <ProductImage
+//             src={`/assets/${product.data.image}`}
+//             alt={product.data.title}
+//           />
+//         </ProductImageContainer>
+//       </figure>
 
-      <aside>
-        <ProductInfo>
-          <ProductInfoHeader>Dimensions</ProductInfoHeader>
-          <label>{product.data.specs?.dimensions}</label>
-        </ProductInfo>
+//       <aside>
+//         <ProductInfo>
+//           <ProductInfoHeader>Dimensions</ProductInfoHeader>
+//           <label>{product.data.specs?.dimensions}</label>
+//         </ProductInfo>
 
-        {product.data.specs?.capacity && (
-          <ProductInfo>
-            <ProductInfoHeader>Capacity</ProductInfoHeader>
-            <label>{product.data.specs?.capacity}</label>
-          </ProductInfo>
-        )}
-        <ProductInfo>
-          <ProductInfoHeader>Features</ProductInfoHeader>
-          <ul>
-            {product.data.features?.map((f, i) => {
-              return (
-                <ProductInfoListItem key={`feature${i}`}>
-                  {f}
-                </ProductInfoListItem>
-              );
-            })}
-          </ul>
-        </ProductInfo>
-      </aside>
+//         {product.data.specs?.capacity && (
+//           <ProductInfo>
+//             <ProductInfoHeader>Capacity</ProductInfoHeader>
+//             <label>{product.data.specs?.capacity}</label>
+//           </ProductInfo>
+//         )}
+//         <ProductInfo>
+//           <ProductInfoHeader>Features</ProductInfoHeader>
+//           <ul>
+//             {product.data.features?.map((f, i) => {
+//               return (
+//                 <ProductInfoListItem key={`feature${i}`}>
+//                   {f}
+//                 </ProductInfoListItem>
+//               );
+//             })}
+//           </ul>
+//         </ProductInfo>
+//       </aside>
 
-      <aside>
-        <ProductInfoFinancePrice>
-          &pound;{product.data.price}
-        </ProductInfoFinancePrice>
+//       <aside>
+//         <ProductInfoFinancePrice>
+//           &pound;{product.data.price}
+//         </ProductInfoFinancePrice>
 
-        <ProductInfoStock>
-          <ProductInfoStockLabel>
-            Stock Level: {product.data.stock}
-          </ProductInfoStockLabel>
+//         <ProductInfoStock>
+//           <ProductInfoStockLabel>
+//             Stock Level: {product.data.stock}
+//           </ProductInfoStockLabel>
 
-          <ProductInfoStockLabel>FREE Delivery</ProductInfoStockLabel>
-        </ProductInfoStock>
+//           <ProductInfoStockLabel>FREE Delivery</ProductInfoStockLabel>
+//         </ProductInfoStock>
 
-        <ProductInfoAction>
-          <ProductInfoActionButton
-            onClick={() =>
-              addProduct({
-                id: product.data.id,
-                title: product.data.title,
-                price: product.data.price,
-              })
-            }
-          >
-            Add to Cart{" "}
-          </ProductInfoActionButton>
-        </ProductInfoAction>
-      </aside>
-      <ProductInfoDescription
-        dangerouslySetInnerHTML={createMarkup()}
-      ></ProductInfoDescription>
-    </ProductInfoArticle>
-  );
-};
+//         <ProductInfoAction>
+//           <ProductInfoActionButton
+//             onClick={() =>
+//               addProduct({
+//                 id: product.data.id,
+//                 title: product.data.title,
+//                 price: product.data.price,
+//               })
+//             }
+//           >
+//             Add to Cart{" "}
+//           </ProductInfoActionButton>
+//         </ProductInfoAction>
+//       </aside>
+//       <ProductInfoDescription
+//         dangerouslySetInnerHTML={createMarkup()}
+//       ></ProductInfoDescription>
+//     </ProductInfoArticle>
+//   );
+// };
 
-export default ProductDetail;
+// //export default ProductDetail;
 
-const ProductInfoArticle = styled.article`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.25fr 1fr 0.25fr;
-  column-gap: 20px;
-`;
+// const ProductInfoArticle = styled.article`
+//   display: grid;
+//   grid-template-columns: 1fr 1fr 1fr;
+//   grid-template-rows: 0.25fr 1fr 0.25fr;
+//   column-gap: 20px;
+// `;
 
-const ProductInfoDescription = styled.div`
-  grid-column: 1 / span 3;
-`;
+// const ProductInfoDescription = styled.div`
+//   grid-column: 1 / span 3;
+// `;
 
-const ProductTitle = styled.div`
- grid-column 1 / span 3;
- color: darkslategray;
- font-weight: bold;
- font-size: 1.5em;
- padding-left: 10px;
- `;
+// const ProductTitle = styled.div`
+//  grid-column 1 / span 3;
+//  color: darkslategray;
+//  font-weight: bold;
+//  font-size: 1.5em;
+//  padding-left: 10px;
+//  `;
 
-const ProductImageContainer = styled.div`
-  padding: 10px;
-  width: 60%;
-`;
+// const ProductImageContainer = styled.div`
+//   padding: 10px;
+//   width: 60%;
+// `;
 
-const ProductImage = styled.img`
-  width: 100%;
-  height: 100%;
-`;
+// const ProductImage = styled.img`
+//   width: 100%;
+//   height: 100%;
+// `;
 
-const ProductInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+// const ProductInfo = styled.div`
+//   display: flex;
+//   flex-direction: column;
+// `;
 
-const ProductInfoHeader = styled.h3`
-  color: darkslategray;
-  font-size: 1em;
-  font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 5px;
-`;
+// const ProductInfoHeader = styled.h3`
+//   color: darkslategray;
+//   font-size: 1em;
+//   font-weight: bold;
+//   padding-top: 10px;
+//   padding-bottom: 5px;
+// `;
 
-const ProductInfoListItem = styled.li`
-  padding-top: 5px;
-`;
+// const ProductInfoListItem = styled.li`
+//   padding-top: 5px;
+// `;
 
-const ProductInfoStock = styled.div`
-  padding-left: 10px;
-  margin-top: 20px;
-  background-color: lightgrey;
-  height: 20%;
-  width: 30%;
-  border-radius: 5px;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-`;
+// const ProductInfoStock = styled.div`
+//   padding-left: 10px;
+//   margin-top: 20px;
+//   background-color: lightgrey;
+//   height: 20%;
+//   width: 30%;
+//   border-radius: 5px;
+//   font-weight: bold;
+//   display: flex;
+//   flex-direction: column;
+// `;
 
-const ProductInfoStockLabel = styled.label`
-  padding-bottom: 5px;
-`;
+// const ProductInfoStockLabel = styled.label`
+//   padding-bottom: 5px;
+// `;
 
-const ProductInfoAction = styled.div`
- dis[pley: flex;
- flex-direction: column;
- `;
+// const ProductInfoAction = styled.div`
+//  dis[pley: flex;
+//  flex-direction: column;
+//  `;
 
-const ProductInfoActionButton = styled.button`
-  width: 160px;
-  height: 30px;
-  border-radius: 10px;
-  margin-top: 20px;
-  background-color: lightgrey;
-  border: solid 1px slategrey;
-  font-weight: bold;
-`;
+// const ProductInfoActionButton = styled.button`
+//   width: 160px;
+//   height: 30px;
+//   border-radius: 10px;
+//   margin-top: 20px;
+//   background-color: lightgrey;
+//   border: solid 1px slategrey;
+//   font-weight: bold;
+// `;
 
-const ProductInfoFinancePrice = styled.div`
-  color: darkslategrey;
-  font-size: 2em;
-  font-weight: bold;
-  padding-top: 10px;
-`;
+// const ProductInfoFinancePrice = styled.div`
+//   color: darkslategrey;
+//   font-size: 2em;
+//   font-weight: bold;
+//   padding-top: 10px;
+// `;
