@@ -1,72 +1,75 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 
-const BASE_URL = 'https://fakestoreapi.com/products';
+// import 
 
-const fetchData = async (url) => {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    setError(error);
-  }
-};
+// const BASE_URL = 'https://fakestoreapi.com/products';
 
-const ProductList = ({ products }) => (
-  <ul>
-    {products.map((product) => (
-      <li key={product.id}>{product.title}</li>
-    ))}
-  </ul>
-);
+// const fetchData = async (url) => {
+//   try {
+//     const response = await fetch(url);
+//     if (!response.ok) {
+//       throw new Error('Network response was not ok');
+//     }
+//     return await response.json();
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     setError(error);
+//   }
+// };
 
-const AllProductCategories = () => {
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+// const ProductList = ({ products }) => (
+//   <ul>
+//     {products.map((product) => (
+//       <li key={product.id}>{product.title}</li>
+//     ))}
+//   </ul>
+// );
 
-  useEffect(() => {
-    const fetchDataAndCategories = async () => {
-      try {
-        const data = await fetchData(BASE_URL);
-        setProducts(data);
+// const AllProductCategories = () => {
+//   const [products, setProducts] = useState([]);
+//   const [categories, setCategories] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
 
-        const uniqueCategories = [...new Set(data.map((product) => product.category))];
-        setCategories(uniqueCategories);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+//   useEffect(() => {
+//     const fetchDataAndCategories = async () => {
+//       try {
+//         const data = await fetchData(BASE_URL);
+//         setProducts(data);
 
-    fetchDataAndCategories();
-  }, []);
+//         const uniqueCategories = [...new Set(data.map((product) => product.category))];
+//         setCategories(uniqueCategories);
+//       } catch (error) {
+//         setError(error);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+//     fetchDataAndCategories();
+//   }, []);
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+//   if (loading) {
+//     return <div>Loading...</div>;
+//   }
 
-  return (
-    <div>
-      <h2>Categories List</h2>
-      <ProductList products={products} key={product.id} />
-      <ul>
-        {categories.map((category) => (
-          <li key={category}>{category}</li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+//   if (error) {
+//     return <div>Error: {error.message}</div>;
+//   }
 
-export default AllProductCategories;
+//   return (
+//     <div>
+//       <h2>Categories List</h2>
+//       <ProductList products={products} key={product.id} />
+//       <ul>
+//         {categories.map((category) => (
+//           <li key={category}>{category}</li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
 
+// export default AllProductCategories;
+
+// // 

@@ -1,0 +1,35 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Product A",
+        "description": "Description for Product A",
+        "price": 10.0,
+        "category": "electronics",
+        "type": "gadget",
+        "imageUrl": "path/to/imageA.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Product B",
+        "description": "Description for Product B",
+        "price": 20.0,
+        "category": "clothing",
+        "type": "shirt",
+        "imageUrl": "path/to/imageB.jpg"
+      }
+    ],
+    "users": [
+      {
+        "id": 1,
+        "username": "user1",
+        "password": "pass1"
+      },
+      {
+        "id": 2,
+        "username": "user2",
+        "password": "pass2"
+      }
+    ],
+    "cart": []
+  }
