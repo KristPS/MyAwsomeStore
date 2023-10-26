@@ -1,3 +1,4 @@
+//fetcher
 const BASE_URL = "http://localhost:5173";
 
 export const fetcher = async (url) => {

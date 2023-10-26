@@ -1,31 +1,38 @@
-//productDetail
+//productDetails
 import React, { useContext, useState, useEffect } from "react";
-import { useParams } from "rect-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { CartContext } from "../cartContext";
-import { getProductById } from "./src/fetcher";
+import { fetcher } from "./fetcher";
+
+export const getProductById = async (id) => {
+  return fetcher(`/products/${id}`);
+};
 
 const ProductDetail = () => {
-  const { addProduct } = useContext(CartContext);
-  const [product, setProduct] = useState({
+  const { addToCart } = useContext(CartContext);
+  const [productData, setProductData] = useState({
     errorMessage: "",
     data: {},
   });
   const { productId } = useParams();
 
+  const handleAddToCart = () => {
+    addToCart(productData); // Assuming addToCart expects a product object
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const responseObject = await getProductById(productId);
-        setProduct(responseObject);
+        setProductData(responseObject);
       } catch (error) {
         console.error("Error fetching product:", error);
       }
     };
     fetchData();
   }, [productId]);
-
   const createMarkup = () => {
     return { __html: product.data?.description };
   };

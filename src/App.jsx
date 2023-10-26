@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import ProductList from "./Pages/Files/ProductList";
-import ProductDetail from "./Pages/Files/ProductDetail";
-import Cart from "./Pages/Files/Cart";
-import Checkout from "./Pages/Files/Checkout";
+import ProductList from "./Pages/Files/productList";
+import ProductDetail from "./Pages/Files/productDetails";
+import Cart from "./Pages/Files/cart";
+import Checkout from "./Pages/Files/checkout";
 
-import Login from "./Pages/Files/Login";
-import Logout from "./Pages/Files/Logout";
+import Login from "./Pages/Files/login";
+import Logout from "./Pages/Files/logout";
 
 function App() {
   return (
