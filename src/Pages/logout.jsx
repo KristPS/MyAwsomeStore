@@ -1,25 +1,19 @@
-import React, { useEffect } from "react";
-import Signup from "../Pages/signup";
-import { useNavigate } from "react-router-dom";
-// once you have user stored, you want to clear the user in the same way that you are clearing the token. 
-const Logout = ({ setToken }) => {
-  const navigate = useNavigate();
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+function Logout() {
+    const navigate = useNavigate();
 
   useEffect(() => {
-    const performLogout = async () => {
-      localStorage.removeItem("token");
-      setToken("");
-      navigate("/");
-    };
-
-    performLogout();
-  }, [setToken, navigate]);
+    localStorage.removeItem('user');
+    navigate('/');
+  }, []);
 
   return (
     <div>
-      <p>Logging out...</p>
+      Logging out...
     </div>
   );
-};
+}
 
 export default Logout;
